@@ -5,9 +5,18 @@ import java.util.Map;
 import java.util.Objects;
 
 public class RemoteParams {
+    private String url;
     private String path;
     private Map<String,Object> params;
     private Object paramObj;
+
+    public RemoteParams(String url) {
+        this.url = url;
+    }
+
+    public String getUrl() {
+        return url;
+    }
 
     public String getPath() {
         return path;
@@ -36,6 +45,11 @@ public class RemoteParams {
 
     public RemoteParams withObject(Object obj) {
         this.paramObj = obj;
+        return this;
+    }
+
+    public RemoteParams withParams(Map<String,Object> params ) {
+        this.params = params;
         return this;
     }
 }

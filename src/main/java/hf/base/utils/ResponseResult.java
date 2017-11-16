@@ -1,5 +1,7 @@
 package hf.base.utils;
 
+import org.apache.commons.lang3.StringUtils;
+
 /**
  * Created by tengfei on 2017/11/6.
  */
@@ -35,5 +37,9 @@ public class ResponseResult<T> {
 
     public void setData(T data) {
         this.data = data;
+    }
+
+    public boolean isSuccess() {
+        return StringUtils.equals(SUCCESS_CODE,this.code);
     }
 }
