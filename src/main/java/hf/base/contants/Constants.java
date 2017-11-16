@@ -1,4 +1,4 @@
-package hf.base.utils;
+package hf.base.contants;
 
 public class Constants {
     public static final String USER_LOGIN_INFO = "user_login_info";
