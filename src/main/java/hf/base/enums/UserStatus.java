@@ -33,4 +33,8 @@ public enum UserStatus {
         }
         return null;
     }
+
+    public int getValue() {
+        return this.value;
+    }
 }
