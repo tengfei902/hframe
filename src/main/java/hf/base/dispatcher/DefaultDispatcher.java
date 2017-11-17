@@ -8,8 +8,7 @@ import java.util.Map;
 public class DefaultDispatcher implements Dispatcher {
 
     @Override
-    public DispatchResult dispatch(HttpServletRequest request) {
-        String page = String.valueOf(request.getAttribute("page"));
+    public DispatchResult dispatch(HttpServletRequest request,String page) {
         Object userInfo = request.getSession().getAttribute(Constants.USER_LOGIN_INFO);
         DispatchResult result = new DispatchResult();
         result.setPage(page);
