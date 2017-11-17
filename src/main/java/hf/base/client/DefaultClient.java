@@ -18,10 +18,10 @@ public class DefaultClient extends BaseClient {
         this.url = url;
     }
 
-    private static final String GET_USER_INFO = "/jh/user/get_user_info";
-    private static final String CUSTOMER_REGISTER = "/jh/user/customer_register";
-    private static final String GET_USER_INFO_BY_ID = "/jh/user/get_user_info_by_id";
-    private static final String GET_USER_GROUP_BY_ID = "/jh/user/get_user_group_by_id";
+    private static final String GET_USER_INFO = "/user/get_user_info";
+    private static final String CUSTOMER_REGISTER = "/user/customer_register";
+    private static final String GET_USER_INFO_BY_ID = "/user/get_user_info_by_id";
+    private static final String GET_USER_GROUP_BY_ID = "/user/get_user_group_by_id";
 
     public UserInfo getUserInfo(String loginId, String password, int userType) {
         RemoteParams params = new RemoteParams(url).withPath(GET_USER_INFO).withParam("loginId",loginId).withParam("password",password).withParam("userType",userType);
