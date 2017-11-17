@@ -15,6 +15,7 @@ public class UserInfo {
     private Date createTime;
     private String inviteCode;
     private Long groupId;
+    private String idCard;
 
     public Long getId() {
         return id;
@@ -110,6 +111,14 @@ public class UserInfo {
 
     public void setGroupId(Long groupId) {
         this.groupId = groupId;
+    }
+
+    public String getIdCard() {
+        return idCard;
+    }
+
+    public void setIdCard(String idCard) {
+        this.idCard = idCard;
     }
 
     public enum STATUS {
