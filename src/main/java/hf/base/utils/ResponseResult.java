@@ -15,6 +15,22 @@ public class ResponseResult<T> {
 
     private T data;
 
+    public static <T> ResponseResult success(T data) {
+        ResponseResult<T> result = new ResponseResult<>();
+        result.setCode(SUCCESS_CODE);
+        result.setMsg(SUCCESS_MSG);
+        result.setData(data);
+        return result;
+    }
+
+    public static <T> ResponseResult<T> failed(String errorCode,String errorMsg,T data) {
+        ResponseResult<T> result = new ResponseResult<>();
+        result.setCode(errorCode);
+        result.setMsg(errorMsg);
+        result.setData(data);
+        return result;
+    }
+
     public String getCode() {
         return code;
     }
