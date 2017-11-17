@@ -13,4 +13,8 @@ public enum GroupStatus {
         this.value = value;
         this.desc = desc;
     }
+
+    public int getValue() {
+        return this.value;
+    }
 }
