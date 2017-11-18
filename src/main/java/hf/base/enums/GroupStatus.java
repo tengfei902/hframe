@@ -17,4 +17,13 @@ public enum GroupStatus {
     public int getValue() {
         return this.value;
     }
+
+    public static GroupStatus parse(int value) {
+        for(GroupStatus groupStatus:GroupStatus.values()) {
+            if(groupStatus.getValue() == value) {
+                return groupStatus;
+            }
+        }
+        return  null;
+    }
 }
