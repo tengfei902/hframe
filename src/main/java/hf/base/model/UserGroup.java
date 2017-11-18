@@ -29,6 +29,8 @@ public class UserGroup {
 
     private Date createTime;
 
+    private String ownerName;
+
     public Long getId() {
         return id;
     }
@@ -131,6 +133,14 @@ public class UserGroup {
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+    }
+
+    public String getOwnerName() {
+        return ownerName;
+    }
+
+    public void setOwnerName(String ownerName) {
+        this.ownerName = ownerName;
     }
 
     public enum Status {
