@@ -35,7 +35,7 @@ public class Pagenation<T> {
             int actualPage = lists.size();
             this.currentPage = actualPage>currentPage?currentPage:actualPage;
             this.nextPage = this.currentPage+1>actualPage?actualPage:this.currentPage+1;
-            this.data = lists.get(this.currentPage);
+            this.data = lists.get(this.currentPage-1);
         }
     }
 }
