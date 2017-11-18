@@ -4,10 +4,12 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import hf.base.exceptions.BizFailException;
 import hf.base.model.RemoteParams;
+import hf.base.model.UserBankCard;
 import hf.base.model.UserGroup;
 import hf.base.model.UserInfo;
 import hf.base.utils.ResponseResult;
 
+import java.util.List;
 import java.util.Map;
 
 public class DefaultClient extends BaseClient {
@@ -22,6 +24,7 @@ public class DefaultClient extends BaseClient {
     private static final String CUSTOMER_REGISTER = "/user/customer_register";
     private static final String GET_USER_INFO_BY_ID = "/user/get_user_info_by_id";
     private static final String GET_USER_GROUP_BY_ID = "/user/get_user_group_by_id";
+    private static final String GET_USER_BANK_CARD = "/user/get_user_bank_card";
 
     public UserInfo getUserInfo(String loginId, String password, int userType) {
         RemoteParams params = new RemoteParams(url).withPath(GET_USER_INFO).withParam("loginId",loginId).withParam("password",password).withParam("userType",userType);
@@ -59,6 +62,16 @@ public class DefaultClient extends BaseClient {
         RemoteParams params = new RemoteParams(url).withPath(GET_USER_GROUP_BY_ID).withParam("id",id);
         String result = super.post(params);
         ResponseResult<UserGroup> response = new Gson().fromJson(result,new TypeToken<ResponseResult<UserGroup>>(){}.getType());
+        if(response.isSuccess()) {
+            return response.getData();
+        }
+        throw new BizFailException(response.getCode(),response.getMsg());
+    }
+
+    public List<UserBankCard> getUserBankCard(Long groupId) {
+        RemoteParams params = new RemoteParams(url).withPath(GET_USER_BANK_CARD).withParam("groupId",groupId);
+        String result = super.post(params);
+        ResponseResult<List<UserBankCard>> response = new Gson().fromJson(result,new TypeToken<ResponseResult<List<UserBankCard>>>(){}.getType());
         if(response.isSuccess()) {
             return response.getData();
         }
