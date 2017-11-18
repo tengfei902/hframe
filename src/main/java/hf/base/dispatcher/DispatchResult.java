@@ -1,6 +1,8 @@
 package hf.base.dispatcher;
 
+import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class DispatchResult {
     private String page;
@@ -20,5 +22,13 @@ public class DispatchResult {
 
     public void setData(Map<String, Object> data) {
         this.data = data;
+    }
+
+    public DispatchResult addObject(String key,Object obj) {
+        if(Objects.isNull(data)) {
+            data = new HashMap<>();
+        }
+        data.put(key,obj);
+        return this;
     }
 }
