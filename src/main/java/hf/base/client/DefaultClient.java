@@ -25,6 +25,7 @@ public class DefaultClient extends BaseClient {
     private static final String GET_USER_INFO_BY_ID = "/user/get_user_info_by_id";
     private static final String GET_USER_GROUP_BY_ID = "/user/get_user_group_by_id";
     private static final String GET_USER_BANK_CARD = "/user/get_user_bank_card";
+    private static final String GET_USER_INFO_BY_GROUP_ID = "/user/get_user_list_by_groupId";
 
     public UserInfo getUserInfo(String loginId, String password, int userType) {
         RemoteParams params = new RemoteParams(url).withPath(GET_USER_INFO).withParam("loginId",loginId).withParam("password",password).withParam("userType",userType);
@@ -72,6 +73,16 @@ public class DefaultClient extends BaseClient {
         RemoteParams params = new RemoteParams(url).withPath(GET_USER_BANK_CARD).withParam("groupId",groupId);
         String result = super.post(params);
         ResponseResult<List<UserBankCard>> response = new Gson().fromJson(result,new TypeToken<ResponseResult<List<UserBankCard>>>(){}.getType());
+        if(response.isSuccess()) {
+            return response.getData();
+        }
+        throw new BizFailException(response.getCode(),response.getMsg());
+    }
+
+    public List<UserInfo> getUserInfoByGroupId(String groupId) {
+        RemoteParams params = new RemoteParams(url).withPath(GET_USER_INFO_BY_GROUP_ID).withParam("groupId",groupId);
+        String result = super.post(params);
+        ResponseResult<List<UserInfo>> response = new Gson().fromJson(result,new TypeToken<ResponseResult<List<UserInfo>>>(){}.getType());
         if(response.isSuccess()) {
             return response.getData();
         }
