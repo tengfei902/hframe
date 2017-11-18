@@ -70,7 +70,7 @@ public class DefaultClient extends BaseClient {
 
     public List<UserBankCard> getUserBankCard(Long groupId) {
         RemoteParams params = new RemoteParams(url).withPath(GET_USER_BANK_CARD).withParam("groupId",groupId);
-        String result = super.post(params);
+        String result = super.get(params);
         ResponseResult<List<UserBankCard>> response = new Gson().fromJson(result,new TypeToken<ResponseResult<List<UserBankCard>>>(){}.getType());
         if(response.isSuccess()) {
             return response.getData();
