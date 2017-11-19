@@ -34,6 +34,12 @@ public class UserChannel {
 
     private Date updateTime;
 
+    private Long subGroupId;
+
+    private Long companyId;
+
+    private BigDecimal subFeeRate;
+
     public Long getId() {
         return id;
     }
@@ -152,5 +158,29 @@ public class UserChannel {
 
     public void setChannelName(String channelName) {
         this.channelName = channelName;
+    }
+
+    public Long getSubGroupId() {
+        return subGroupId;
+    }
+
+    public void setSubGroupId(Long subGroupId) {
+        this.subGroupId = subGroupId;
+    }
+
+    public Long getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(Long companyId) {
+        this.companyId = companyId;
+    }
+
+    public BigDecimal getSubFeeRate() {
+        return subFeeRate;
+    }
+
+    public void setSubFeeRate(BigDecimal subFeeRate) {
+        this.subFeeRate = subFeeRate;
     }
 }
