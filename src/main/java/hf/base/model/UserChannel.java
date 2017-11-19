@@ -6,6 +6,8 @@ import java.util.Date;
 public class UserChannel {
     private Long id;
 
+    private String channelName;
+
     private String channelCode;
 
     private Long channelId;
@@ -142,5 +144,13 @@ public class UserChannel {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public String getChannelName() {
+        return channelName;
+    }
+
+    public void setChannelName(String channelName) {
+        this.channelName = channelName;
     }
 }
