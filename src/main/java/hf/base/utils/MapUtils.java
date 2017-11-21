@@ -1,6 +1,7 @@
 package hf.base.utils;
 
 import com.google.common.collect.Maps;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.cglib.beans.BeanMap;
 
 import java.util.HashMap;
@@ -33,6 +34,9 @@ public class MapUtils {
         if (bean != null) {
             BeanMap beanMap = BeanMap.create(bean);
             for (Object key : beanMap.keySet()) {
+                if(StringUtils.isEmpty(String.valueOf(beanMap.get(key)))) {
+                    continue;
+                }
                 map.put(String.valueOf(key), beanMap.get(key));
             }
         }
