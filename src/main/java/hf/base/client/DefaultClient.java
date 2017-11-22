@@ -26,6 +26,7 @@ public class DefaultClient extends BaseClient {
     private static final String GET_USER_GROUP_BY_ID = "/user/get_user_group_by_id";
     private static final String GET_USER_BANK_CARD = "/user/get_user_bank_card";
     private static final String GET_USER_INFO_BY_GROUP_ID = "/user/get_user_list_by_groupId";
+    private static final String GET_USER_BANK_CARD_DETAIL = "/user/get_user_bank_card_detail";
 
     public UserInfo getUserInfo(String loginId, String password, int userType) {
         RemoteParams params = new RemoteParams(url).withPath(GET_USER_INFO).withParam("loginId",loginId).withParam("password",password).withParam("userType",userType);
@@ -87,5 +88,12 @@ public class DefaultClient extends BaseClient {
             return response.getData();
         }
         throw new BizFailException(response.getCode(),response.getMsg());
+    }
+
+    public UserBankCard getUserBankCardDetail(String bankCardId) {
+        RemoteParams params = new RemoteParams(url).withPath(GET_USER_BANK_CARD_DETAIL).withParam("id",bankCardId);
+        String result = super.post(params);
+        ResponseResult<UserBankCard> response = new Gson().fromJson(result,new TypeToken<ResponseResult<UserBankCard>>(){}.getType());
+        return response.getData();
     }
 }
