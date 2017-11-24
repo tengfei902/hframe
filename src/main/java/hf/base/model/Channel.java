@@ -7,7 +7,7 @@ public class Channel {
 
     private String channelCode;
 
-    private String codeDescl
+    private String codeDesc;
 
     private String channelName;
 
@@ -65,11 +65,11 @@ public class Channel {
         this.status = status;
     }
 
-    public String getCodeDescl() {
-        return codeDescl;
+    public String getCodeDesc() {
+        return codeDesc;
     }
 
-    public void setCodeDescl(String codeDescl) {
-        this.codeDescl = codeDescl;
+    public void setCodeDesc(String codeDesc) {
+        this.codeDesc = codeDesc;
     }
 }
