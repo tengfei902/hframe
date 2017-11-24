@@ -7,6 +7,8 @@ public class Channel {
 
     private String channelCode;
 
+    private String codeDescl
+
     private String channelName;
 
     private BigDecimal feeRate;
@@ -61,5 +63,13 @@ public class Channel {
 
     public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    public String getCodeDescl() {
+        return codeDescl;
+    }
+
+    public void setCodeDescl(String codeDescl) {
+        this.codeDescl = codeDescl;
     }
 }
