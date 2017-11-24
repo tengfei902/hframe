@@ -3,10 +3,7 @@ package hf.base.client;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import hf.base.exceptions.BizFailException;
-import hf.base.model.RemoteParams;
-import hf.base.model.UserBankCard;
-import hf.base.model.UserGroup;
-import hf.base.model.UserInfo;
+import hf.base.model.*;
 import hf.base.utils.ResponseResult;
 
 import java.util.List;
@@ -28,6 +25,7 @@ public class DefaultClient extends BaseClient {
     private static final String GET_USER_INFO_BY_GROUP_ID = "/user/get_user_list_by_groupId";
     private static final String GET_USER_BANK_CARD_DETAIL = "/user/get_user_bank_card_detail";
     private static final String GET_SUB_USER_GROUP = "/user/get_sub_user_group";
+    private static final String GET_CHANNEL_BY_ID = "/user/get_channel_by_id";
 
     public UserInfo getUserInfo(String loginId, String password, int userType) {
         RemoteParams params = new RemoteParams(url).withPath(GET_USER_INFO).withParam("loginId",loginId).withParam("password",password).withParam("userType",userType);
@@ -102,6 +100,16 @@ public class DefaultClient extends BaseClient {
         RemoteParams params = new RemoteParams(url).withPath(GET_SUB_USER_GROUP).withParam("groupId",groupId);
         String result = super.post(params);
         ResponseResult<List<Map<String,Object>>> response = new Gson().fromJson(result,new TypeToken<ResponseResult<List<Map<String,Object>>>>(){}.getType());
+        if(response.isSuccess()) {
+            return response.getData();
+        }
+        throw new BizFailException(response.getCode(),response.getMsg());
+    }
+
+    public Channel getChannelById(String id) {
+        RemoteParams remoteParams = new RemoteParams(url).withPath(GET_CHANNEL_BY_ID).withParam("id",id);
+        String result = super.post(remoteParams);
+        ResponseResult<Channel> response = new Gson().fromJson(result,new TypeToken<ResponseResult<Channel>>(){}.getType());
         if(response.isSuccess()) {
             return response.getData();
         }
