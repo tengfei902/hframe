@@ -62,7 +62,7 @@ public class TypeConverter {
             }else if(Integer.class.isAssignableFrom(field.getType())) {
                 beanCache.get(dataType).get(field.getName()).getWriteMethod().invoke(data,new BigDecimal(value).intValue());
             }else if(Date.class.isAssignableFrom(field.getType())) {
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
                 Date date = sdf.parse(value);
                 beanCache.get(dataType).get(field.getName()).getWriteMethod().invoke(data,date);
             } else if(BigDecimal.class.isAssignableFrom(field.getType())){

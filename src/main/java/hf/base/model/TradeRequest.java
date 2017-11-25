@@ -10,10 +10,6 @@ public class TradeRequest extends Page {
     @Field
     private String outTradeNo;
     @Field
-    private Date fromTime;
-    @Field
-    private Date endTime;
-    @Field
     private Long channelId;
     @Field
     private Integer status;
@@ -36,22 +32,6 @@ public class TradeRequest extends Page {
 
     public void setOutTradeNo(String outTradeNo) {
         this.outTradeNo = outTradeNo;
-    }
-
-    public Date getFromTime() {
-        return fromTime;
-    }
-
-    public void setFromTime(Date fromTime) {
-        this.fromTime = fromTime;
-    }
-
-    public Date getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(Date endTime) {
-        this.endTime = endTime;
     }
 
     public Long getChannelId() {
