@@ -1,15 +1,25 @@
 package hf.base.model;
 
+import hf.base.annotations.Field;
+
 import java.util.Date;
 
 public class TradeRequest extends Page {
+    @Field
     private String mchId;
+    @Field
     private String outTradeNo;
+    @Field
     private Date fromTime;
+    @Field
     private Date endTime;
+    @Field
     private Long channelId;
+    @Field
     private Integer status;
+    @Field
     private Integer type;
+    @Field(required = true)
     private Long groupId;
 
     public String getMchId() {

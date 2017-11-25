@@ -1,7 +1,12 @@
 package hf.base.model;
 
+import hf.base.annotations.Field;
+import hf.base.contants.Constants;
+
 public class Page {
+    @Field(type = Field.Type.number,defaults = "1")
     private Integer currentPage;
+    @Field(type= Field.Type.number,defaults = "100")
     private Integer pageSize;
 
     public Integer getCurrentPage() {
