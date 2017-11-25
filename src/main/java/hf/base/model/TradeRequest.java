@@ -10,7 +10,7 @@ public class TradeRequest {
     @Field
     private String outTradeNo;
     @Field
-    private Long channelId;
+    private String channelCode;
     @Field
     private Integer status;
     @Field
@@ -38,12 +38,12 @@ public class TradeRequest {
         this.outTradeNo = outTradeNo;
     }
 
-    public Long getChannelId() {
-        return channelId;
+    public String getChannelCode() {
+        return channelCode;
     }
 
-    public void setChannelId(Long channelId) {
-        this.channelId = channelId;
+    public void setChannelCode(String channelCode) {
+        this.channelCode = channelCode;
     }
 
     public Integer getStatus() {
