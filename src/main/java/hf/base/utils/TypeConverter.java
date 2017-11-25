@@ -1,7 +1,7 @@
 package hf.base.utils;
 
 import hf.base.exceptions.BizFailException;
-import jh.exceptions.BizException;
+import org.apache.commons.collections4.MapUtils;
 import org.springframework.util.StringUtils;
 
 import java.beans.BeanInfo;
@@ -39,11 +39,11 @@ public class TypeConverter {
         Field[] fields = dataType.getDeclaredFields();
 
         for(Field field:fields) {
-            if(!field.isAnnotationPresent(jh.model.annotations.Field.class)) {
+            if(!field.isAnnotationPresent(hf.base.annotations.Field.class)) {
                 continue;
             }
 
-            jh.model.annotations.Field fieldValue = field.getDeclaredAnnotation(jh.model.annotations.Field.class);
+            hf.base.annotations.Field fieldValue = field.getDeclaredAnnotation(hf.base.annotations.Field.class);
 
             String fieldStr = String.valueOf(request.get(StringUtils.isEmpty(fieldValue.alias())?field.getName():fieldValue.alias()));
             String value = StringUtils.isEmpty(fieldStr)?fieldValue.defaults():fieldStr;
@@ -56,7 +56,7 @@ public class TypeConverter {
             }
 
             if(fieldValue.required() && org.apache.commons.lang3.StringUtils.isEmpty(value)) {
-                throw new BizException(String.format("%s cannot be empty",field.getName()));
+                throw new BizFailException(String.format("%s cannot be empty",field.getName()));
             } else if(Long.class.isAssignableFrom(field.getType())) {
                 beanCache.get(dataType).get(field.getName()).getWriteMethod().invoke(data,new BigDecimal(value).longValue());
             }else if(Integer.class.isAssignableFrom(field.getType())) {
