@@ -10,6 +10,7 @@ public class TradeRequest extends Page {
     private Long channelId;
     private Integer status;
     private Integer type;
+    private Long groupId;
 
     public String getMchId() {
         return mchId;
@@ -65,5 +66,13 @@ public class TradeRequest extends Page {
 
     public void setType(Integer type) {
         this.type = type;
+    }
+
+    public Long getGroupId() {
+        return groupId;
+    }
+
+    public void setGroupId(Long groupId) {
+        this.groupId = groupId;
     }
 }
