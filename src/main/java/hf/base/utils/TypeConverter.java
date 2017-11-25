@@ -46,7 +46,7 @@ public class TypeConverter {
             hf.base.annotations.Field fieldValue = field.getDeclaredAnnotation(hf.base.annotations.Field.class);
 
             String fieldStr = String.valueOf(request.get(StringUtils.isEmpty(fieldValue.alias())?field.getName():fieldValue.alias()));
-            String value = StringUtils.isEmpty(fieldStr)?fieldValue.defaults():fieldStr;
+            String value = (StringUtils.isEmpty(fieldStr) || org.apache.commons.lang3.StringUtils.equalsIgnoreCase("null",fieldStr)) ?fieldValue.defaults():fieldStr;
 
             if(org.apache.commons.lang3.StringUtils.isEmpty(value) || org.apache.commons.lang3.StringUtils.equalsIgnoreCase("null",value)) {
                 if(fieldValue.required()) {
