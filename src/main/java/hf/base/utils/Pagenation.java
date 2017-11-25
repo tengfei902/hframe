@@ -43,6 +43,9 @@ public class Pagenation<T> {
         this.currentPage = currentPage;
         this.pageSize = pageSize;
         this.totalPage = totalSize%pageSize==0?totalSize/pageSize:totalSize/pageSize +1;
+        if(this.totalPage == 0) {
+            this.totalPage = 1;
+        }
         this.nextPage = currentPage >= totalPage?totalPage:currentPage+1;
         this.totalSize = totalSize;
         this.data = list;
