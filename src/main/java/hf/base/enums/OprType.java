@@ -1,5 +1,8 @@
 package hf.base.enums;
 
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * Created by tengfei on 2017/11/5.
  */
@@ -34,5 +37,9 @@ public enum OprType {
 
     public int getValue() {
         return this.value;
+    }
+
+    public static List<Integer> getAddList() {
+        return Arrays.asList(PAY.value,BONUS.value);
     }
 }

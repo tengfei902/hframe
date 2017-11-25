@@ -1,5 +1,8 @@
 package hf.base.enums;
 
+import java.util.Arrays;
+import java.util.List;
+
 public enum OprStatus {
     NEW(0),
     PAY_SUCCESS(1),
