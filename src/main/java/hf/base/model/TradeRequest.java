@@ -4,7 +4,7 @@ import hf.base.annotations.Field;
 
 import java.util.Date;
 
-public class TradeRequest extends Page {
+public class TradeRequest {
     @Field
     private String mchId;
     @Field
@@ -17,6 +17,10 @@ public class TradeRequest extends Page {
     private Integer type;
     @Field(required = true)
     private Long groupId;
+    @Field(type = Field.Type.number,defaults = "1")
+    private Integer currentPage;
+    @Field(type= Field.Type.number,defaults = "100")
+    private Integer pageSize;
 
     public String getMchId() {
         return mchId;
@@ -64,5 +68,21 @@ public class TradeRequest extends Page {
 
     public void setGroupId(Long groupId) {
         this.groupId = groupId;
+    }
+
+    public Integer getCurrentPage() {
+        return currentPage;
+    }
+
+    public void setCurrentPage(Integer currentPage) {
+        this.currentPage = currentPage;
+    }
+
+    public Integer getPageSize() {
+        return pageSize;
+    }
+
+    public void setPageSize(Integer pageSize) {
+        this.pageSize = pageSize;
     }
 }
