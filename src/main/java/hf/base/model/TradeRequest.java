@@ -17,9 +17,9 @@ public class TradeRequest {
     private Integer type;
     @Field(required = true)
     private Long groupId;
-    @Field(type = Field.Type.number,defaults = "1")
+    @Field(type = Field.Type.number,defaults = "1",required = true)
     private Integer currentPage;
-    @Field(type= Field.Type.number,defaults = "100")
+    @Field(type= Field.Type.number,defaults = "100",required = true)
     private Integer pageSize;
 
     public String getMchId() {
