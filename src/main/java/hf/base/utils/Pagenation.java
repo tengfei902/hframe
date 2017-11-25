@@ -42,7 +42,7 @@ public class Pagenation<T> {
     public Pagenation(List<T> list,int totalSize, int currentPage,int pageSize) {
         this.currentPage = currentPage;
         this.pageSize = pageSize;
-        this.totalPage = totalSize/pageSize +1;
+        this.totalPage = totalSize%pageSize==0?totalSize/pageSize:totalSize/pageSize +1;
         this.nextPage = currentPage >= totalPage?totalPage:currentPage+1;
         this.totalSize = totalSize;
         this.data = list;
