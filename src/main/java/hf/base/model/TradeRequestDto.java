@@ -15,6 +15,9 @@ public class TradeRequestDto {
     private BigDecimal actualAmount;
     private Date createTime;
     private Date successTime;
+    private String service;
+    private Integer status;
+    private String statusDesc;
 
     public Long getId() {
         return id;
@@ -102,5 +105,29 @@ public class TradeRequestDto {
 
     public void setSuccessTime(Date successTime) {
         this.successTime = successTime;
+    }
+
+    public String getService() {
+        return service;
+    }
+
+    public void setService(String service) {
+        this.service = service;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public String getStatusDesc() {
+        return statusDesc;
+    }
+
+    public void setStatusDesc(String statusDesc) {
+        this.statusDesc = statusDesc;
     }
 }
