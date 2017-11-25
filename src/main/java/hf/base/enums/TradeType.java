@@ -20,4 +20,13 @@ public enum TradeType {
     public String getDesc() {
         return desc;
     }
+
+    public static TradeType parse(int value) {
+        for(TradeType tradeType:TradeType.values()) {
+            if(tradeType.getValue() == value) {
+                return tradeType;
+            }
+        }
+        return null;
+    }
 }
