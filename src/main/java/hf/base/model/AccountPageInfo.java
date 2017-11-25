@@ -13,6 +13,7 @@ public class AccountPageInfo {
     private BigDecimal processingAmount;
     private BigDecimal totalAmount;
     private BigDecimal totalSettleAmount;
+    private BigDecimal totalFee;
     private Date createTime;
     private Date updateTime;
     private Integer groupType;
@@ -138,5 +139,13 @@ public class AccountPageInfo {
 
     public void setMchId(String mchId) {
         this.mchId = mchId;
+    }
+
+    public BigDecimal getTotalFee() {
+        return totalFee;
+    }
+
+    public void setTotalFee(BigDecimal totalFee) {
+        this.totalFee = totalFee;
     }
 }
