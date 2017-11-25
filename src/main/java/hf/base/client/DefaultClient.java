@@ -4,6 +4,8 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import hf.base.exceptions.BizFailException;
 import hf.base.model.*;
+import hf.base.utils.MapUtils;
+import hf.base.utils.Pagenation;
 import hf.base.utils.ResponseResult;
 
 import java.util.List;
@@ -26,6 +28,7 @@ public class DefaultClient extends BaseClient {
     private static final String GET_USER_BANK_CARD_DETAIL = "/user/get_user_bank_card_detail";
     private static final String GET_SUB_USER_GROUP = "/user/get_sub_user_group";
     private static final String GET_CHANNEL_BY_ID = "/user/get_channel_by_id";
+    private static final String GET_TRADE_REQUEST_LIST = "/user/get_trade_request_list";
 
     public UserInfo getUserInfo(String loginId, String password, int userType) {
         RemoteParams params = new RemoteParams(url).withPath(GET_USER_INFO).withParam("loginId",loginId).withParam("password",password).withParam("userType",userType);
@@ -110,6 +113,16 @@ public class DefaultClient extends BaseClient {
         RemoteParams remoteParams = new RemoteParams(url).withPath(GET_CHANNEL_BY_ID).withParam("id",id);
         String result = super.post(remoteParams);
         ResponseResult<Channel> response = new Gson().fromJson(result,new TypeToken<ResponseResult<Channel>>(){}.getType());
+        if(response.isSuccess()) {
+            return response.getData();
+        }
+        throw new BizFailException(response.getCode(),response.getMsg());
+    }
+
+    public Pagenation<TradeRequestDto> getTradeList(TradeRequest tradeRequest) {
+        RemoteParams remoteParams = new RemoteParams(url).withPath(GET_TRADE_REQUEST_LIST).withParams(MapUtils.beanToMap(tradeRequest));
+        String result = super.post(remoteParams);
+        ResponseResult<Pagenation<TradeRequestDto>> response = new Gson().fromJson(result,new TypeToken<Pagenation<TradeRequestDto>>(){}.getType());
         if(response.isSuccess()) {
             return response.getData();
         }
