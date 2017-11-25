@@ -122,7 +122,7 @@ public class DefaultClient extends BaseClient {
     public Pagenation<TradeRequestDto> getTradeList(TradeRequest tradeRequest) {
         RemoteParams remoteParams = new RemoteParams(url).withPath(GET_TRADE_REQUEST_LIST).withParams(MapUtils.beanToMap(tradeRequest));
         String result = super.post(remoteParams);
-        ResponseResult<Pagenation<TradeRequestDto>> response = new Gson().fromJson(result,new TypeToken<Pagenation<TradeRequestDto>>(){}.getType());
+        ResponseResult<Pagenation<TradeRequestDto>> response = new Gson().fromJson(result,new TypeToken<ResponseResult<Pagenation<TradeRequestDto>>>(){}.getType());
         if(response.isSuccess()) {
             return response.getData();
         }
