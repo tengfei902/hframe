@@ -123,7 +123,7 @@ public class AccountOprInfo {
         this.mchId = mchId;
     }
 
-    public boolean isAdd() {
+    public boolean getAdd() {
         return add;
     }
 

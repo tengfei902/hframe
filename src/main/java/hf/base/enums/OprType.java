@@ -42,4 +42,8 @@ public enum OprType {
     public static List<Integer> getAddList() {
         return Arrays.asList(PAY.value,BONUS.value);
     }
+
+    public boolean isAdd() {
+        return this.value == PAY.value || this.value == REFUND.value || this.value == REVERSE.value || this.value == BONUS.value;
+    }
 }
