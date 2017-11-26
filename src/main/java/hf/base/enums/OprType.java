@@ -12,7 +12,8 @@ public enum OprType {
     REFUND(2,"退款"),
     REVERSE(3,"撤销交易"),
     WITHDRAW(4,"结算"),
-    BONUS(5,"提成");
+    BONUS(5,"提成"),
+    FEE(6,"手续费");
 
     private int value;
     private String desc;
@@ -44,6 +45,6 @@ public enum OprType {
     }
 
     public boolean isAdd() {
-        return this.value == PAY.value || this.value == REFUND.value || this.value == REVERSE.value || this.value == BONUS.value;
+        return this.value == PAY.value || this.value == REFUND.value || this.value == REVERSE.value || this.value == BONUS.value || this.value == FEE.value;
     }
 }
