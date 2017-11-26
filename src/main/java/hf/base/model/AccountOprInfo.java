@@ -5,6 +5,7 @@ import java.util.Date;
 
 public class AccountOprInfo {
     private Long id;
+    private String mchId;
     private Long accountId;
     private Long groupId;
     private String name;
@@ -111,5 +112,13 @@ public class AccountOprInfo {
 
     public void setRemark(String remark) {
         this.remark = remark;
+    }
+
+    public String getMchId() {
+        return mchId;
+    }
+
+    public void setMchId(String mchId) {
+        this.mchId = mchId;
     }
 }
