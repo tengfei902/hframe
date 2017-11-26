@@ -17,6 +17,7 @@ public class AccountOprInfo {
     private Integer status;
     private String statusDesc;
     private String remark;
+    private boolean add;
 
     public Long getId() {
         return id;
@@ -120,5 +121,13 @@ public class AccountOprInfo {
 
     public void setMchId(String mchId) {
         this.mchId = mchId;
+    }
+
+    public boolean isAdd() {
+        return add;
+    }
+
+    public void setAdd(boolean add) {
+        this.add = add;
     }
 }
