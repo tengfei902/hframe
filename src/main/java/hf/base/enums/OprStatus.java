@@ -19,4 +19,13 @@ public enum OprStatus {
     public int getValue() {
         return value;
     }
+
+    public static OprStatus parse(int value) {
+        for(OprStatus oprStatus:OprStatus.values()) {
+            if(oprStatus.getValue()== value) {
+                return oprStatus;
+            }
+        }
+        return null;
+    }
 }
