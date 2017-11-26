@@ -30,6 +30,7 @@ public class DefaultClient extends BaseClient {
     private static final String GET_CHANNEL_BY_ID = "/user/get_channel_by_id";
     private static final String GET_TRADE_REQUEST_LIST = "/user/get_trade_request_list";
     private static final String GET_ACCOUNT_LIST = "/user/get_account_list";
+    private static final String GET_ADMIN_ACCOUNT_LIST = "/user/get_admin_account_list";
 
     public UserInfo getUserInfo(String loginId, String password, int userType) {
         RemoteParams params = new RemoteParams(url).withPath(GET_USER_INFO).withParam("loginId",loginId).withParam("password",password).withParam("userType",userType);
@@ -134,6 +135,16 @@ public class DefaultClient extends BaseClient {
         RemoteParams remoteParams = new RemoteParams(url).withPath(GET_ACCOUNT_LIST).withParams(MapUtils.beanToMap(accountRequest));
         String result = super.post(remoteParams);
         ResponseResult<Pagenation<AccountPageInfo>> response = new Gson().fromJson(result,new TypeToken<ResponseResult<Pagenation<AccountPageInfo>>>(){}.getType());
+        if(response.isSuccess()) {
+            return response.getData();
+        }
+        throw new BizFailException(response.getCode(),response.getMsg());
+    }
+
+    public Pagenation<AdminAccountPageInfo> getAdminAccountList(AccountRequest accountRequest) {
+        RemoteParams remoteParams = new RemoteParams(url).withPath(GET_ADMIN_ACCOUNT_LIST).withParams(MapUtils.beanToMap(accountRequest));
+        String result = super.post(remoteParams);
+        ResponseResult<Pagenation<AdminAccountPageInfo>> response = new Gson().fromJson(result,new TypeToken<ResponseResult<Pagenation<AdminAccountPageInfo>>>(){}.getType());
         if(response.isSuccess()) {
             return response.getData();
         }
