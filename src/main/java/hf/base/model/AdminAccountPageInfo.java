@@ -1,5 +1,7 @@
 package hf.base.model;
 
+import hf.base.annotations.Field;
+
 import java.math.BigDecimal;
 import java.util.Date;
 
