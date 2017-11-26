@@ -1,19 +1,18 @@
 package hf.base.enums;
 
-import java.util.Arrays;
-import java.util.List;
-
 public enum OprStatus {
-    NEW(0),
-    PAY_SUCCESS(1),
-    PAY_FAILED(99),
-    FINISHED(10),
-    REFUND(98);
+    NEW(0,"未处理"),
+    PAY_SUCCESS(1,"成功，未入账"),
+    PAY_FAILED(99,"处理失败"),
+    FINISHED(10,"成功"),
+    REFUND(98,"已退款");
 
     private int value;
+    private String desc;
 
-    OprStatus(int value) {
+    OprStatus(int value,String desc) {
         this.value = value;
+        this.desc = desc;
     }
 
     public int getValue() {
@@ -27,5 +26,9 @@ public enum OprStatus {
             }
         }
         return null;
+    }
+
+    public String getDesc() {
+        return desc;
     }
 }
