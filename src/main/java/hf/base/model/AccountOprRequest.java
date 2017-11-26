@@ -9,6 +9,8 @@ public class AccountOprRequest {
     private String outTradeNo;
     @Field
     private Integer oprType;
+    @Field
+    private Integer status;
     @Field(required = true,defaults = "1")
     private Integer currentPage;
     @Field(required = true,defaults = "15")
@@ -62,5 +64,13 @@ public class AccountOprRequest {
 
     public void setPageSize(Integer pageSize) {
         this.pageSize = pageSize;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 }
