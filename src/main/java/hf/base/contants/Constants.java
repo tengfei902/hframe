@@ -26,4 +26,6 @@ public class Constants {
     public static final List<String> bankNames = Arrays.asList("北京银行","东亚银行","中国工商银行","中国光大银行","广发银行","华夏银行","中国建设银行","交通银行","中国民生银行","南京银行","宁波银行","中国农业银行","平安银行","上海银行","上海浦东发展银行","深圳发展银行","兴业银行","中国邮政储蓄银行","招商银行","浙商银行","中国银行","中信银行");
 
     public static final Integer pageSize = 100;
+
+    public static final String SETTLE_FEE_RATE = "settle_fee_rate";
 }
