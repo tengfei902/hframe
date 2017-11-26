@@ -9,10 +9,10 @@ import java.util.List;
 public enum OprType {
     PAY(0,"付款"),
     TAX(1,"税费"),
-    REFUND(1,"退款"),
-    REVERSE(2,"撤销交易"),
-    WITHDRAW(3,"结算"),
-    BONUS(4,"提成");
+    REFUND(2,"退款"),
+    REVERSE(3,"撤销交易"),
+    WITHDRAW(4,"结算"),
+    BONUS(5,"提成");
 
     private int value;
     private String desc;
