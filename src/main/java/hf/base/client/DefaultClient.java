@@ -32,6 +32,7 @@ public class DefaultClient extends BaseClient {
     private static final String GET_ACCOUNT_LIST = "/user/get_account_list";
     private static final String GET_ADMIN_ACCOUNT_LIST = "/user/get_admin_account_list";
     private static final String GET_ACCOUNT_OPR_LOG_LIST = "/user/get_account_opr_log_list";
+    private static final String GET_ACCOUNT_BY_GROUP_ID = "/user/get_account_by_group_id";
 
     public UserInfo getUserInfo(String loginId, String password, int userType) {
         RemoteParams params = new RemoteParams(url).withPath(GET_USER_INFO).withParam("loginId",loginId).withParam("password",password).withParam("userType",userType);
@@ -156,6 +157,16 @@ public class DefaultClient extends BaseClient {
         RemoteParams remoteParams = new RemoteParams(url).withPath(GET_ACCOUNT_OPR_LOG_LIST).withParams(MapUtils.beanToMap(request));
         String result = super.post(remoteParams);
         ResponseResult<Pagenation<AccountOprInfo>> response = new Gson().fromJson(result,new TypeToken<ResponseResult<Pagenation<AccountOprInfo>>>(){}.getType());
+        if(response.isSuccess()) {
+            return response.getData();
+        }
+        throw new BizFailException(response.getCode(),response.getMsg());
+    }
+
+    public Account getAccountByGroupId(Long groupId) {
+        RemoteParams remoteParams = new RemoteParams(url).withPath(GET_ACCOUNT_BY_GROUP_ID).withParam("groupId",groupId);
+        String result = super.post(remoteParams);
+        ResponseResult<Account> response = new Gson().fromJson(result,new TypeToken<ResponseResult<Account>>(){}.getType());
         if(response.isSuccess()) {
             return response.getData();
         }
