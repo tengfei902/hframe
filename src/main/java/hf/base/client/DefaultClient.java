@@ -8,6 +8,7 @@ import hf.base.utils.MapUtils;
 import hf.base.utils.Pagenation;
 import hf.base.utils.ResponseResult;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
@@ -33,6 +34,7 @@ public class DefaultClient extends BaseClient {
     private static final String GET_ADMIN_ACCOUNT_LIST = "/user/get_admin_account_list";
     private static final String GET_ACCOUNT_OPR_LOG_LIST = "/user/get_account_opr_log_list";
     private static final String GET_ACCOUNT_BY_GROUP_ID = "/user/get_account_by_group_id";
+    private static final String GET_WITHDRAW_FEE_RATE = "/user/get_withdraw_fee_rate";
 
     public UserInfo getUserInfo(String loginId, String password, int userType) {
         RemoteParams params = new RemoteParams(url).withPath(GET_USER_INFO).withParam("loginId",loginId).withParam("password",password).withParam("userType",userType);
@@ -167,6 +169,16 @@ public class DefaultClient extends BaseClient {
         RemoteParams remoteParams = new RemoteParams(url).withPath(GET_ACCOUNT_BY_GROUP_ID).withParam("groupId",groupId);
         String result = super.post(remoteParams);
         ResponseResult<Account> response = new Gson().fromJson(result,new TypeToken<ResponseResult<Account>>(){}.getType());
+        if(response.isSuccess()) {
+            return response.getData();
+        }
+        throw new BizFailException(response.getCode(),response.getMsg());
+    }
+
+    public BigDecimal getWithDrawRate() {
+        RemoteParams remoteParams = new RemoteParams(url).withPath(GET_WITHDRAW_FEE_RATE);
+        String result = super.post(remoteParams);
+        ResponseResult<BigDecimal> response = new Gson().fromJson(result,new TypeToken<ResponseResult<BigDecimal>>(){}.getType());
         if(response.isSuccess()) {
             return response.getData();
         }
