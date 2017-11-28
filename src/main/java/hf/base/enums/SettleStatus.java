@@ -18,4 +18,13 @@ public enum SettleStatus {
     public String getDesc() {
         return desc;
     }
+
+    public static SettleStatus parse(int value) {
+        for(SettleStatus settleStatus:SettleStatus.values()) {
+            if(settleStatus.getValue() == value) {
+                return settleStatus;
+            }
+        }
+        return null;
+    }
 }
