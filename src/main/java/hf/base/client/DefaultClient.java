@@ -36,6 +36,7 @@ public class DefaultClient extends BaseClient {
     private static final String GET_ACCOUNT_BY_GROUP_ID = "/user/get_account_by_group_id";
     private static final String GET_WITHDRAW_FEE_RATE = "/user/get_withdraw_fee_rate";
     private static final String NEW_SETTLE_REQUEST = "/settle/new_settle_request";
+    private static final String GET_WITH_DRAW_PAGE = "/settle/get_with_draw_page";
 
     public UserInfo getUserInfo(String loginId, String password, int userType) {
         RemoteParams params = new RemoteParams(url).withPath(GET_USER_INFO).withParam("loginId",loginId).withParam("password",password).withParam("userType",userType);
@@ -190,6 +191,16 @@ public class DefaultClient extends BaseClient {
         RemoteParams remoteParams = new RemoteParams(url).withPath(NEW_SETTLE_REQUEST).withParam("groupId",groupId).withParam("settleBankCard",cardId).withParam("settleAmount",amount);
         String result = super.post(remoteParams);
         ResponseResult<Boolean> response = new Gson().fromJson(result,new TypeToken<ResponseResult<Boolean>>(){}.getType());
+        if(response.isSuccess()) {
+            return response.getData();
+        }
+        throw new BizFailException(response.getCode(),response.getMsg());
+    }
+
+    public Pagenation<WithDrawInfo> getWithDrawPage(WithDrawRequest request) {
+        RemoteParams remoteParams = new RemoteParams(url).withPath(GET_WITH_DRAW_PAGE).withParams(MapUtils.beanToMap(request));
+        String result = super.post(remoteParams);
+        ResponseResult<Pagenation<WithDrawInfo>> response = new Gson().fromJson(result,new TypeToken<ResponseResult<Pagenation<WithDrawInfo>>>(){}.getType());
         if(response.isSuccess()) {
             return response.getData();
         }
