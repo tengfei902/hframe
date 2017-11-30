@@ -10,6 +10,7 @@ import java.beans.PropertyDescriptor;
 import java.lang.reflect.Field;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
+import java.time.*;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -62,8 +63,10 @@ public class TypeConverter {
             }else if(Integer.class.isAssignableFrom(field.getType())) {
                 beanCache.get(dataType).get(field.getName()).getWriteMethod().invoke(data,new BigDecimal(value).intValue());
             }else if(Date.class.isAssignableFrom(field.getType())) {
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-                Date date = sdf.parse(value);
+                LocalDateTime localDateTime = LocalDateTime.parse(value);
+                ZoneId zone = ZoneId.systemDefault();
+                Instant instant = localDateTime.atZone(zone).toInstant();
+                Date date = Date.from(instant);
                 beanCache.get(dataType).get(field.getName()).getWriteMethod().invoke(data,date);
             } else if(BigDecimal.class.isAssignableFrom(field.getType())){
                 beanCache.get(dataType).get(field.getName()).getWriteMethod().invoke(data,new BigDecimal(value));
