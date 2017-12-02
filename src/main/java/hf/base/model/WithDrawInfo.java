@@ -6,6 +6,7 @@ import java.util.Date;
 public class WithDrawInfo {
     private Long id;
     private Long groupId;
+    private String groupNo;
     private Long accountId;
     private String name;
     private UserBankCard withdrawBank;
@@ -156,5 +157,13 @@ public class WithDrawInfo {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public String getGroupNo() {
+        return groupNo;
+    }
+
+    public void setGroupNo(String groupNo) {
+        this.groupNo = groupNo;
     }
 }
