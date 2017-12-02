@@ -22,6 +22,7 @@ public class WithDrawInfo {
     private String statusDesc;
     private Date createTime;
     private Date updateTime;
+    private String remark;
 
     public Long getId() {
         return id;
@@ -165,5 +166,13 @@ public class WithDrawInfo {
 
     public void setGroupNo(String groupNo) {
         this.groupNo = groupNo;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
     }
 }
