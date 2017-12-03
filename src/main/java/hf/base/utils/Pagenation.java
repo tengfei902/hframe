@@ -18,6 +18,7 @@ public class Pagenation<T> {
     private ShowPage showPage;
     private Page headPage;
     private Page tailPage;
+    private boolean hasNext;
 
     public Pagenation(List<T> list) {
 
@@ -84,6 +85,12 @@ public class Pagenation<T> {
         this.showPage = showPage;
         this.headPage = new Page(1,"首页",false);
         this.tailPage = new Page(totalPage,"最后一页",false);
+
+        if(this.currentPage == this.totalPage) {
+            this.hasNext = false;
+        } else {
+            this.hasNext = true;
+        }
     }
 
     public int getCurrentPage() {
@@ -156,6 +163,14 @@ public class Pagenation<T> {
 
     public void setTailPage(Page tailPage) {
         this.tailPage = tailPage;
+    }
+
+    public boolean isHasNext() {
+        return hasNext;
+    }
+
+    public void setHasNext(boolean hasNext) {
+        this.hasNext = hasNext;
     }
 
     class ShowPage {
