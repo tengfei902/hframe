@@ -77,8 +77,8 @@ public class Pagenation<T> {
 
         ShowPage showPage = new ShowPage();
         showPage.setPages(lists.get(currentShowPageIndex-1));
-        showPage.setShowHead(currentShowPageIndex!=0);
-        showPage.setShowTail(currentShowPageIndex!=this.totalPage-1);
+        showPage.setShowHead(currentShowPageIndex!=1);
+        showPage.setShowTail(currentShowPageIndex!=this.totalPage);
 
         this.showPage = showPage;
         this.headPage = new Page(1,"首页",false);
