@@ -186,7 +186,7 @@ public class Pagenation<T> {
             this.pages = pages;
         }
 
-        public boolean isShowHead() {
+        public boolean getShowHead() {
             return showHead;
         }
 
@@ -194,7 +194,7 @@ public class Pagenation<T> {
             this.showHead = showHead;
         }
 
-        public boolean isShowTail() {
+        public boolean getShowTail() {
             return showTail;
         }
 
@@ -234,6 +234,14 @@ public class Pagenation<T> {
 
         public void setLabel(String label) {
             this.label = label;
+        }
+
+        public boolean getSelected() {
+            return selected;
+        }
+
+        public void setSelected(boolean selected) {
+            this.selected = selected;
         }
     }
 }
