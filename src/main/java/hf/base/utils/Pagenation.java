@@ -76,7 +76,7 @@ public class Pagenation<T> {
         int currentShowPageIndex = this.currentPage%10==0?this.currentPage/10:this.currentPage/10+1;
 
         ShowPage showPage = new ShowPage();
-        showPage.setPages(lists.get(currentShowPageIndex));
+        showPage.setPages(lists.get(currentShowPageIndex-1));
         showPage.setShowHead(currentShowPageIndex!=0);
         showPage.setShowTail(currentShowPageIndex!=this.totalPage-1);
 
