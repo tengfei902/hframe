@@ -38,6 +38,7 @@ public class DefaultClient extends BaseClient {
     private static final String NEW_SETTLE_REQUEST = "/settle/new_settle_request";
     private static final String GET_WITH_DRAW_PAGE = "/settle/get_with_draw_page";
     private static final String GET_USER_CHANNEL_LIST = "/user/get_user_channel_list";
+    private static final String GET_SUM_LOCK_AMOUNT = "/user/get_sum_lock_amount";
 
     public UserInfo getUserInfo(String loginId, String password, int userType) {
         RemoteParams params = new RemoteParams(url).withPath(GET_USER_INFO).withParam("loginId",loginId).withParam("password",password).withParam("userType",userType);
@@ -216,5 +217,15 @@ public class DefaultClient extends BaseClient {
             return responseResult.getData();
         }
         throw new BizFailException(responseResult.getCode(),responseResult.getMsg());
+    }
+
+    public BigDecimal getSumLockAmount(Long groupId) {
+        RemoteParams remoteParams = new RemoteParams(url).withPath(GET_SUM_LOCK_AMOUNT).withParam("groupId",groupId);
+        String result = super.post(remoteParams);
+        ResponseResult<BigDecimal> response = new Gson().fromJson(result,new TypeToken<ResponseResult<BigDecimal>>(){}.getType());
+        if(response.isSuccess()) {
+            return response.getData();
+        }
+        throw new BizFailException(response.getCode(),response.getMsg());
     }
 }
