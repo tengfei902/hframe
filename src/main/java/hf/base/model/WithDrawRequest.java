@@ -13,6 +13,8 @@ public class WithDrawRequest {
     private Integer currentPage;
     @Field(required = true,defaults = "15")
     private Integer pageSize;
+    @Field(required = true,defaults = "0")
+    private Integer role;
 
     public Long getGroupId() {
         return groupId;
