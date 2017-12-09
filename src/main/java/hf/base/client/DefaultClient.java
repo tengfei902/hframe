@@ -39,6 +39,7 @@ public class DefaultClient extends BaseClient {
     private static final String GET_WITH_DRAW_PAGE = "/settle/get_with_draw_page";
     private static final String GET_USER_CHANNEL_LIST = "/user/get_user_channel_list";
     private static final String GET_SUM_LOCK_AMOUNT = "/user/get_sum_lock_amount";
+    private static final String GET_ADMIN_ACCOUNT_BY_GROUP_ID = "/user/get_admin_account_by_group_id";
 
     public UserInfo getUserInfo(String loginId, String password, int userType) {
         RemoteParams params = new RemoteParams(url).withPath(GET_USER_INFO).withParam("loginId",loginId).withParam("password",password).withParam("userType",userType);
@@ -223,6 +224,16 @@ public class DefaultClient extends BaseClient {
         RemoteParams remoteParams = new RemoteParams(url).withPath(GET_SUM_LOCK_AMOUNT).withParam("groupId",groupId);
         String result = super.post(remoteParams);
         ResponseResult<BigDecimal> response = new Gson().fromJson(result,new TypeToken<ResponseResult<BigDecimal>>(){}.getType());
+        if(response.isSuccess()) {
+            return response.getData();
+        }
+        throw new BizFailException(response.getCode(),response.getMsg());
+    }
+
+    public AdminAccount getAdminAccountByGroupId(Long groupId) {
+        RemoteParams remoteParams = new RemoteParams(url).withPath(GET_ADMIN_ACCOUNT_BY_GROUP_ID).withParam("groupId",groupId);
+        String result = super.post(remoteParams);
+        ResponseResult<AdminAccount> response = new Gson().fromJson(result,new TypeToken<ResponseResult<AdminAccount>>(){}.getType());
         if(response.isSuccess()) {
             return response.getData();
         }
