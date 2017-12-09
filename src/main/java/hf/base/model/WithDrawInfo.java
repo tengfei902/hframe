@@ -7,6 +7,8 @@ public class WithDrawInfo {
     private Long id;
     private Long groupId;
     private String groupNo;
+    private Integer groupType;
+    private String groupTypeDesc;
     private Long accountId;
     private String name;
     private UserBankCard withdrawBank;
@@ -174,5 +176,21 @@ public class WithDrawInfo {
 
     public void setRemark(String remark) {
         this.remark = remark;
+    }
+
+    public Integer getGroupType() {
+        return groupType;
+    }
+
+    public void setGroupType(Integer groupType) {
+        this.groupType = groupType;
+    }
+
+    public String getGroupTypeDesc() {
+        return groupTypeDesc;
+    }
+
+    public void setGroupTypeDesc(String groupTypeDesc) {
+        this.groupTypeDesc = groupTypeDesc;
     }
 }
