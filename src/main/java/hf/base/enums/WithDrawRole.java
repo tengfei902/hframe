@@ -17,4 +17,8 @@ public enum WithDrawRole {
         }
         return null;
     }
+
+    public int getValue() {
+        return value;
+    }
 }
