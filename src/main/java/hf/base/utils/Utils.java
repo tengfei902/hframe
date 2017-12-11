@@ -7,11 +7,9 @@ import org.apache.commons.lang3.StringUtils;
 import java.beans.BeanInfo;
 import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
-import java.util.TreeMap;
+import java.util.*;
 
 /**
  * Created by tengfei on 2017/10/28.
@@ -86,11 +84,20 @@ public class Utils {
 
     public static String getUrlParam(Object obj,Class dataType) {
         try {
+            Field[] fields = Object.class.getFields();
+            List<String> objFieldList = new ArrayList<>();
+            for(Field field:fields) {
+                objFieldList.add(field.getName());
+            }
+
             BeanInfo beanInfo = Introspector.getBeanInfo(dataType);
             PropertyDescriptor[] descriptors = beanInfo.getPropertyDescriptors();
             StringBuilder params = new StringBuilder("");
 
             for(PropertyDescriptor descriptor : descriptors) {
+                if(objFieldList.contains(descriptor.getDisplayName())) {
+                    continue;
+                }
                 Object o = descriptor.getReadMethod().invoke(obj);
                 if(Objects.isNull(o)) {
                     continue;
