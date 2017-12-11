@@ -84,18 +84,12 @@ public class Utils {
 
     public static String getUrlParam(Object obj,Class dataType) {
         try {
-            Field[] fields = Object.class.getFields();
-            List<String> objFieldList = new ArrayList<>();
-            for(Field field:fields) {
-                objFieldList.add(field.getName());
-            }
-
             BeanInfo beanInfo = Introspector.getBeanInfo(dataType);
             PropertyDescriptor[] descriptors = beanInfo.getPropertyDescriptors();
             StringBuilder params = new StringBuilder("");
 
             for(PropertyDescriptor descriptor : descriptors) {
-                if(objFieldList.contains(descriptor.getDisplayName())) {
+                if(StringUtils.equalsIgnoreCase("class",descriptor.getDisplayName())) {
                     continue;
                 }
                 Object o = descriptor.getReadMethod().invoke(obj);
