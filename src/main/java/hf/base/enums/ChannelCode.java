@@ -1,10 +1,10 @@
 package hf.base.enums;
 
 public enum ChannelCode {
-    WX_OPEN("pay.weixin.jsp ay"),
-    ALI("pay.alipay.jspa y"),
-    QQ("pay.tenpay.nat ive"),
-    WX("pay.weixin.raw. app");
+    WX_OPEN("pay.weixin.jspay"),
+    ALI("pay.alipay.jspay"),
+    QQ("pay.tenpay.native"),
+    WX("pay.weixin.raw.app");
 
     private String service;
 
