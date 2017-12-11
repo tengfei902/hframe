@@ -1,5 +1,6 @@
 package hf.base.utils;
 
+import hf.base.exceptions.BizFailException;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.StringUtils;
 
@@ -9,6 +10,7 @@ import java.beans.PropertyDescriptor;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.TreeMap;
 
 /**
@@ -80,5 +82,26 @@ public class Utils {
 
     public static String convertPassword(String str) {
         return DigestUtils.md5Hex(str);
+    }
+
+    public static String getUrlParam(Object obj,Class dataType) {
+        try {
+            BeanInfo beanInfo = Introspector.getBeanInfo(dataType);
+            PropertyDescriptor[] descriptors = beanInfo.getPropertyDescriptors();
+            StringBuilder params = new StringBuilder("");
+
+            for(PropertyDescriptor descriptor : descriptors) {
+                Object o = descriptor.getReadMethod().invoke(obj);
+                if(Objects.isNull(o)) {
+                    continue;
+                }
+                params.append(String.format("%s=%s&",descriptor.getDisplayName(),String.valueOf(o)));
+            }
+
+            return params.substring(0,params.length()-1);
+        } catch (Exception e) {
+            throw new BizFailException(e.getMessage());
+        }
+
     }
 }
