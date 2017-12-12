@@ -12,9 +12,9 @@ import java.util.concurrent.TimeUnit;
 @Service
 public class DefaultCacheService implements CacheService {
     private LoadingCache<String,String> userCache = CacheBuilder.newBuilder()
-            .expireAfterAccess(10, TimeUnit.MINUTES)
-            .maximumSize(5000)
-            .refreshAfterWrite(10,TimeUnit.MINUTES)
+            .expireAfterAccess(1, TimeUnit.DAYS)
+            .maximumSize(50000)
+            .refreshAfterWrite(1,TimeUnit.DAYS)
             .build(new CacheLoader<String, String>() {
                 @Override
                 public String load(String s) throws Exception {
