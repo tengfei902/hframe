@@ -10,6 +10,7 @@ import java.beans.PropertyDescriptor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Created by tengfei on 2017/10/28.
@@ -103,6 +104,34 @@ public class Utils {
         } catch (Exception e) {
             throw new BizFailException(e.getMessage());
         }
+    }
 
+    public static boolean checkEncrypt(Map<String,Object> map,String cipherCode) {
+        String sign = map.get("sign").toString();
+        Set<String> set = map.keySet().parallelStream().collect(Collectors.toCollection(TreeSet::new));
+        StringBuilder str = new StringBuilder("");
+        for(String key:set) {
+            if(StringUtils.equalsIgnoreCase("sign",key)) {
+                continue;
+            }
+            str = str.append(String.format("%s=%s",key,map.get(key)));
+            str = str.append("&");
+        }
+        str = str.append("key=").append(cipherCode);
+        return StringUtils.equals(DigestUtils.md5Hex(str.toString()).toUpperCase(),sign);
+    }
+
+    public static String encrypt(Map<String,Object> map,String cipherCode) {
+        Set<String> set = map.keySet().parallelStream().collect(Collectors.toCollection(TreeSet::new));
+        StringBuilder str = new StringBuilder("");
+        for(String key:set) {
+            if(StringUtils.equalsIgnoreCase("sign",key)) {
+                continue;
+            }
+            str = str.append(String.format("%s=%s",key,map.get(key)));
+            str = str.append("&");
+        }
+        str = str.append("key=").append(cipherCode);
+        return DigestUtils.md5Hex(str.toString()).toUpperCase();
     }
 }
