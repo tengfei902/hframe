@@ -1,6 +1,11 @@
 package hf.base.model;
 
+import hf.base.annotations.Field;
+
+import java.math.BigDecimal;
+
 public class AdminBankCard {
+
     private Long id;
 
     private Long companyId;
@@ -18,10 +23,15 @@ public class AdminBankCard {
     private String province;
 
     private String city;
-
     private Integer status;
-
     private String remark;
+    private String mchId;
+    private String outletNo;
+    private String name;
+    private String ownerName;
+    private BigDecimal limitAmount;
+    private String cipherCode;
+    private String channelNo;
 
     public Long getId() {
         return id;
@@ -52,7 +62,7 @@ public class AdminBankCard {
     }
 
     public void setBankNo(String bankNo) {
-        this.bankNo = bankNo == null ? null : bankNo.trim();
+        this.bankNo = bankNo;
     }
 
     public String getBank() {
@@ -60,7 +70,7 @@ public class AdminBankCard {
     }
 
     public void setBank(String bank) {
-        this.bank = bank == null ? null : bank.trim();
+        this.bank = bank;
     }
 
     public String getDeposit() {
@@ -68,7 +78,7 @@ public class AdminBankCard {
     }
 
     public void setDeposit(String deposit) {
-        this.deposit = deposit == null ? null : deposit.trim();
+        this.deposit = deposit;
     }
 
     public String getOwner() {
@@ -76,7 +86,7 @@ public class AdminBankCard {
     }
 
     public void setOwner(String owner) {
-        this.owner = owner == null ? null : owner.trim();
+        this.owner = owner;
     }
 
     public String getProvince() {
@@ -84,7 +94,7 @@ public class AdminBankCard {
     }
 
     public void setProvince(String province) {
-        this.province = province == null ? null : province.trim();
+        this.province = province;
     }
 
     public String getCity() {
@@ -92,7 +102,7 @@ public class AdminBankCard {
     }
 
     public void setCity(String city) {
-        this.city = city == null ? null : city.trim();
+        this.city = city;
     }
 
     public Integer getStatus() {
@@ -108,6 +118,62 @@ public class AdminBankCard {
     }
 
     public void setRemark(String remark) {
-        this.remark = remark == null ? null : remark.trim();
+        this.remark = remark;
+    }
+
+    public String getMchId() {
+        return mchId;
+    }
+
+    public void setMchId(String mchId) {
+        this.mchId = mchId;
+    }
+
+    public String getOutletNo() {
+        return outletNo;
+    }
+
+    public void setOutletNo(String outletNo) {
+        this.outletNo = outletNo;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getOwnerName() {
+        return ownerName;
+    }
+
+    public void setOwnerName(String ownerName) {
+        this.ownerName = ownerName;
+    }
+
+    public BigDecimal getLimitAmount() {
+        return limitAmount;
+    }
+
+    public void setLimitAmount(BigDecimal limitAmount) {
+        this.limitAmount = limitAmount;
+    }
+
+    public String getCipherCode() {
+        return cipherCode;
+    }
+
+    public void setCipherCode(String cipherCode) {
+        this.cipherCode = cipherCode;
+    }
+
+    public String getChannelNo() {
+        return channelNo;
+    }
+
+    public void setChannelNo(String channelNo) {
+        this.channelNo = channelNo;
     }
 }
