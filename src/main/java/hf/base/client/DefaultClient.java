@@ -40,6 +40,7 @@ public class DefaultClient extends BaseClient {
     private static final String GET_USER_CHANNEL_LIST = "/user/get_user_channel_list";
     private static final String GET_SUM_LOCK_AMOUNT = "/user/get_sum_lock_amount";
     private static final String GET_ADMIN_ACCOUNT_BY_GROUP_ID = "/user/get_admin_account_by_group_id";
+    private static final String EDIT_PASSWORD = "/user/edit_password";
 
     public UserInfo getUserInfo(String loginId, String password, int userType) {
         RemoteParams params = new RemoteParams(url).withPath(GET_USER_INFO).withParam("loginId",loginId).withParam("password",password).withParam("userType",userType);
@@ -238,5 +239,17 @@ public class DefaultClient extends BaseClient {
             return response.getData();
         }
         throw new BizFailException(response.getCode(),response.getMsg());
+    }
+
+    public boolean editPassword(String userId,String ypassword,String newpassword,String newpasswordok) {
+        RemoteParams params = new RemoteParams(url).withPath(EDIT_PASSWORD)
+                .withParam("userId",userId)
+                .withParam("ypassword",ypassword)
+                .withParam("newpassword",newpassword)
+                .withParam("newpasswordok",newpasswordok);
+
+        String result = super.post(params);
+        ResponseResult<Boolean> response = new Gson().fromJson(result,new TypeToken<ResponseResult<Boolean>>(){}.getType());
+        return response.getData();
     }
 }
