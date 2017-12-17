@@ -12,4 +12,5 @@ public class CodeManager {
     public static final String PARAM_CHECK_FAILED = "2";
     public static final String PAY_FAILED = "3";
     public static final String WAITING = "4";
+    public static final String PERMISSION_DENY = "5";
 }
