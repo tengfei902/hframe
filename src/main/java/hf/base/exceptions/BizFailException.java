@@ -2,15 +2,21 @@ package hf.base.exceptions;
 
 public class BizFailException extends RuntimeException {
 
+    private String code;
+    private String message;
+
     public BizFailException() {
     }
 
     public BizFailException(String message) {
         super(message);
+        this.message = message;
     }
 
     public BizFailException(String code,String message) {
         super(String.format("%s:%s",code,message));
+        this.code = code;
+        this.message = message;
     }
 
     public BizFailException(String message, Throwable cause) {
