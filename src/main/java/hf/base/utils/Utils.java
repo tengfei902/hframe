@@ -146,7 +146,7 @@ public class Utils {
         return sb.toString();
     }
 
-    public boolean isEmpty(String str) {
+    public static boolean isEmpty(String str) {
         return StringUtils.isEmpty(str) || StringUtils.equalsIgnoreCase("null",str);
     }
 }
