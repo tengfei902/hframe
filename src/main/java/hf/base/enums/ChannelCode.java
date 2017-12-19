@@ -1,26 +1,67 @@
 package hf.base.enums;
 
 public enum ChannelCode {
-    WX_OPEN("pay.weixin.jspay"),
-    ALI("pay.alipay.jspay"),
-    QQ("pay.tenpay.native"),
-    WX("pay.weixin.raw.app"),
-    FXT_WX_OPEN_ID("01"),
-    FXT_WX("02"),
-    FXT_WX_FS("03"),
-    FXT_WX_H5("04"),
-    FXT_WX_APP("05"),
-    FXT_ALI("06"),
-    FXT_ALI_ZS("07"),
-    FXT_ALI_FS("08");
+    WX_OPEN("01","微信公众号","01",""),
+    WX_SM("02","微信主扫","02",""),
+    WX_FS("03","微信反扫","03",""),
+    WX_H5("04","微信H5支付","04",""),
+    WX_APP("05","微信APP支付","05",""),
+    ALI_OPEN("06","支付宝服务窗体","06",""),
+    ALI_ZS("07","支付宝主扫","07",""),
+    ALI_FS("08","支付宝反扫","08","");
 
-    private String service;
+    private String code;
+    private String desc;
+    private String fxtCode;
+    private String ysCode;
 
-    ChannelCode(String service) {
-        this.service = service;
+    ChannelCode(String code,String desc,String fxtCode,String ysCode) {
+        this.code = code;
+        this.desc = desc;
+        this.fxtCode = fxtCode;
+        this.ysCode = ysCode;
     }
 
-    public String getService() {
-        return this.service;
+    public String getCode() {
+        return code;
+    }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public String getFxtCode() {
+        return fxtCode;
+    }
+
+    public String getYsCode() {
+        return ysCode;
+    }
+
+    public static ChannelCode parseFromCode(String code) {
+        for(ChannelCode channelCode:ChannelCode.values()) {
+            if(channelCode.getCode().equalsIgnoreCase(code)) {
+                return channelCode;
+            }
+        }
+        return null;
+    }
+
+    public static ChannelCode parseFromFxtCode(String fxtCode) {
+        for(ChannelCode channelCode:ChannelCode.values()) {
+            if(channelCode.getFxtCode().equalsIgnoreCase(fxtCode)) {
+                return channelCode;
+            }
+        }
+        return null;
+    }
+
+    public static ChannelCode parseFromYsCode(String ysCode) {
+        for(ChannelCode channelCode:ChannelCode.values()) {
+            if(channelCode.getYsCode().equalsIgnoreCase(ysCode)) {
+                return channelCode;
+            }
+        }
+        return null;
     }
 }
