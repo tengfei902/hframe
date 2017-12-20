@@ -7,6 +7,8 @@ public class Channel {
 
     private String channelCode;
 
+    private String providerCode;
+
     private String codeDesc;
 
     private String channelName;
@@ -71,5 +73,13 @@ public class Channel {
 
     public void setCodeDesc(String codeDesc) {
         this.codeDesc = codeDesc;
+    }
+
+    public String getProviderCode() {
+        return providerCode;
+    }
+
+    public void setProviderCode(String providerCode) {
+        this.providerCode = providerCode;
     }
 }
