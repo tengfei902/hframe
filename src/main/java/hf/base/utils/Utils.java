@@ -149,4 +149,8 @@ public class Utils {
     public static boolean isEmpty(String str) {
         return StringUtils.isEmpty(str) || StringUtils.equalsIgnoreCase("null",str);
     }
+
+    public static String getMchId() {
+        return null;
+    }
 }

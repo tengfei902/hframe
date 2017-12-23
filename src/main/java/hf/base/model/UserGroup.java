@@ -31,6 +31,10 @@ public class UserGroup {
 
     private String ownerName;
 
+    private String callbackUrl;
+
+    private String cipherCode;
+
     public Long getId() {
         return id;
     }
@@ -141,6 +145,22 @@ public class UserGroup {
 
     public void setOwnerName(String ownerName) {
         this.ownerName = ownerName;
+    }
+
+    public String getCallbackUrl() {
+        return callbackUrl;
+    }
+
+    public void setCallbackUrl(String callbackUrl) {
+        this.callbackUrl = callbackUrl;
+    }
+
+    public String getCipherCode() {
+        return cipherCode;
+    }
+
+    public void setCipherCode(String cipherCode) {
+        this.cipherCode = cipherCode;
     }
 
     public enum Status {
