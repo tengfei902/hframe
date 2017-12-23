@@ -5,6 +5,8 @@ import java.math.BigDecimal;
 public class Channel {
     private Long id;
 
+    private String code;
+
     private String channelCode;
 
     private String channelName;
@@ -101,5 +103,13 @@ public class Channel {
 
     public void setProviderNo(String providerNo) {
         this.providerNo = providerNo;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 }
