@@ -7,6 +7,8 @@ public class UserGroupExt {
 
     private String providerCode;
 
+    private String providerName;
+
     private String merchantNo;
 
     private String outletNo;
@@ -59,5 +61,13 @@ public class UserGroupExt {
 
     public void setCipherCode(String cipherCode) {
         this.cipherCode = cipherCode == null ? null : cipherCode.trim();
+    }
+
+    public String getProviderName() {
+        return providerName;
+    }
+
+    public void setProviderName(String providerName) {
+        this.providerName = providerName;
     }
 }
