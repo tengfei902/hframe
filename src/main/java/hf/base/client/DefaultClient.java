@@ -42,6 +42,7 @@ public class DefaultClient extends BaseClient {
     private static final String GET_ADMIN_ACCOUNT_BY_GROUP_ID = "/user/get_admin_account_by_group_id";
     private static final String EDIT_PASSWORD = "/user/edit_password";
     private static final String DELETE_CHANNEL = "/user/del_channel";
+    private static final String GET_USER_EXT_BY_ID = "/user/get_user_group_ext_by_id";
 
     public UserInfo getUserInfo(String loginId, String password, int userType) {
         RemoteParams params = new RemoteParams(url).withPath(GET_USER_INFO).withParam("loginId",loginId).withParam("password",password).withParam("userType",userType);
@@ -258,6 +259,16 @@ public class DefaultClient extends BaseClient {
         RemoteParams remoteParams = new RemoteParams(url).withPath(DELETE_CHANNEL).withParam("channelId",channelId);
         String result = super.post(remoteParams);
         return parseResult(result);
+    }
+
+    public UserGroupExt getUserExtById(String id) {
+        RemoteParams remoteParams = new RemoteParams(url).withPath(GET_USER_EXT_BY_ID).withParam("id",id);
+        String result = super.post(remoteParams);
+        ResponseResult<UserGroupExt> response = new Gson().fromJson(result,new TypeToken<ResponseResult<UserGroupExt>>(){}.getType());
+        if(response.isSuccess()) {
+            return response.getData();
+        }
+        throw new BizFailException(response.getCode(),response.getMsg());
     }
 
     private boolean parseResult(String result) {
