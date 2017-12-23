@@ -7,17 +7,21 @@ public class Channel {
 
     private String channelCode;
 
-    private String providerCode;
-
     private String codeDesc;
-
-    private String channelName;
 
     private BigDecimal feeRate;
 
     private String url;
 
     private Integer status;
+
+    private String providerCode;
+
+    private String channelNo;
+
+    private String channelName;
+
+    private String targetChannelCode;
 
     public Long getId() {
         return id;
@@ -81,5 +85,21 @@ public class Channel {
 
     public void setProviderCode(String providerCode) {
         this.providerCode = providerCode;
+    }
+
+    public String getChannelNo() {
+        return channelNo;
+    }
+
+    public void setChannelNo(String channelNo) {
+        this.channelNo = channelNo;
+    }
+
+    public String getTargetChannelCode() {
+        return targetChannelCode;
+    }
+
+    public void setTargetChannelCode(String targetChannelCode) {
+        this.targetChannelCode = targetChannelCode;
     }
 }
