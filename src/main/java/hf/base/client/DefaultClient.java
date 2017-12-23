@@ -45,6 +45,8 @@ public class DefaultClient extends BaseClient {
     private static final String GET_USER_EXT_BY_ID = "/user/get_user_group_ext_by_id";
     private static final String SAVE_USER_GROUP_EXT = "/user/save_user_group_ext";
 
+    private static final String GET_USER_CHANNEL_INFO = "/user/get_user_channel_info";
+
     public UserInfo getUserInfo(String loginId, String password, int userType) {
         RemoteParams params = new RemoteParams(url).withPath(GET_USER_INFO).withParam("loginId",loginId).withParam("password",password).withParam("userType",userType);
 
@@ -276,6 +278,16 @@ public class DefaultClient extends BaseClient {
         RemoteParams remoteParams = new RemoteParams(url).withPath(SAVE_USER_GROUP_EXT).withParams(params);
         String result = super.post(remoteParams);
         return parseResult(result);
+    }
+
+    public List<UserChannelPage> getUserChannelInfo(String groupId) {
+        RemoteParams remoteParams = new RemoteParams(url).withPath(GET_USER_CHANNEL_INFO).withParam("groupId",groupId);
+        String result = super.post(remoteParams);
+        ResponseResult<List<UserChannelPage>> responseResult = new Gson().fromJson(result,new TypeToken<ResponseResult<List<UserChannelPage>>>(){}.getType());
+        if(responseResult.isSuccess()) {
+            return responseResult.getData();
+        }
+        throw new BizFailException(responseResult.getCode(),responseResult.getMsg());
     }
 
     private boolean parseResult(String result) {
