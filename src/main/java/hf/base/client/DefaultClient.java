@@ -43,6 +43,7 @@ public class DefaultClient extends BaseClient {
     private static final String EDIT_PASSWORD = "/user/edit_password";
     private static final String DELETE_CHANNEL = "/user/del_channel";
     private static final String GET_USER_EXT_BY_ID = "/user/get_user_group_ext_by_id";
+    private static final String SAVE_USER_GROUP_EXT = "/user/save_user_group_ext";
 
     public UserInfo getUserInfo(String loginId, String password, int userType) {
         RemoteParams params = new RemoteParams(url).withPath(GET_USER_INFO).withParam("loginId",loginId).withParam("password",password).withParam("userType",userType);
@@ -269,6 +270,12 @@ public class DefaultClient extends BaseClient {
             return response.getData();
         }
         throw new BizFailException(response.getCode(),response.getMsg());
+    }
+
+    public boolean saveUserGroupExt(Map<String,Object> params) {
+        RemoteParams remoteParams = new RemoteParams(url).withPath(SAVE_USER_GROUP_EXT).withParams(params);
+        String result = super.post(remoteParams);
+        return parseResult(result);
     }
 
     private boolean parseResult(String result) {
