@@ -5,6 +5,7 @@ public enum PayRequestStatus {
     OPR_GENERATED(1,"处理中"),
     PROCESSING(5,"银行已受理"),
     OPR_SUCCESS(10,"交易成功"),
+    USER_NOTIFIED(15,"已通知客户"),
     PAY_FAILED(98,"交易失败"),
     OPR_FINISHED(99,"交易失败"),
     PAY_SUCCESS(100,"交易完成");
