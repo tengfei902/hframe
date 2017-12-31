@@ -6,7 +6,8 @@ public enum PayRequestStatus {
     PROCESSING(5,"银行已受理"),
     OPR_SUCCESS(10,"交易成功"),
     PAY_FAILED(98,"交易失败"),
-    OPR_FINISHED(99,"交易失败");
+    OPR_FINISHED(99,"交易失败"),
+    PAY_SUCCESS(100,"交易完成");
 
     private int value;
     private String desc;
