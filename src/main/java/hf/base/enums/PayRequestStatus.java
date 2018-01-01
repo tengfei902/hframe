@@ -37,4 +37,8 @@ public enum PayRequestStatus {
         }
         return null;
     }
+
+    public static boolean isFinalStatus(int status) {
+        return OPR_FINISHED.getValue() == status || PAY_SUCCESS.getValue() == status || PAY_FAILED.getValue() == status;
+    }
 }
