@@ -9,6 +9,7 @@ public class RemoteParams {
     private String path;
     private Map<String,Object> params;
     private Object paramObj;
+    private int timeout;
 
     public RemoteParams(String url) {
         this.url = url;
@@ -50,6 +51,11 @@ public class RemoteParams {
 
     public RemoteParams withParams(Map<String,Object> params ) {
         this.params = params;
+        return this;
+    }
+
+    public RemoteParams timeout(int timeout) {
+        this.timeout = timeout;
         return this;
     }
 }
