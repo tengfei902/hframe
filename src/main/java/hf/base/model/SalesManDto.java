@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class SalesManDto {
     private Long id;
+    private String salesinfo;
     private String groupNo;
     private String name;
     private String idCard;
@@ -92,5 +93,13 @@ public class SalesManDto {
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+    }
+
+    public String getSalesinfo() {
+        return salesinfo;
+    }
+
+    public void setSalesinfo(String salesinfo) {
+        this.salesinfo = salesinfo;
     }
 }
