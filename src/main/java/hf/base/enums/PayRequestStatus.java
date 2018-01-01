@@ -4,9 +4,12 @@ public enum PayRequestStatus {
     NEW(0,"未处理"),
     OPR_GENERATED(1,"处理中"),
     PROCESSING(5,"银行已受理"),
-    OPR_SUCCESS(10,"交易成功"),
-    USER_NOTIFIED(15,"已通知客户"),
+    //远程调用后直接返回失败
     PAY_FAILED(98,"交易失败"),
+    //异步通知成功
+    OPR_SUCCESS(10,"交易成功"),
+    //异步通知失败
+    USER_NOTIFIED(20,"已通知客户"),
     OPR_FINISHED(99,"交易失败"),
     PAY_SUCCESS(100,"交易完成");
 
