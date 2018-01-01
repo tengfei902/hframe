@@ -4,6 +4,7 @@ public enum GroupType {
     CUSTOMER(1,"普通商户"),
     AGENT(2,"代理商"),
     COMPANY(3,"分公司"),
+    SALES(4,"业务员"),
     SUPER(10,"总部");
 
     private int value;
