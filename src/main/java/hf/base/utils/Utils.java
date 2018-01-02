@@ -147,7 +147,7 @@ public class Utils {
         }
         String params =str.substring(0,str.length()-1);
         params = params+cipherCode;
-        return DigestUtils.md5Hex(params).toUpperCase();
+        return DigestUtils.md5Hex(params);
     }
 
     public static String getRandomString(int length) {
