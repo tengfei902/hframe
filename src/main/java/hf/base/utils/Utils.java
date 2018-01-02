@@ -135,6 +135,21 @@ public class Utils {
         return DigestUtils.md5Hex(str.toString()).toUpperCase();
     }
 
+    public static String encrypt2(Map<String,Object> map,String cipherCode) {
+        Set<String> set = map.keySet().parallelStream().collect(Collectors.toCollection(TreeSet::new));
+        StringBuilder str = new StringBuilder("");
+        for(String key:set) {
+            if(StringUtils.equalsIgnoreCase("sign",key)) {
+                continue;
+            }
+            str = str.append(String.format("%s=%s",key,map.get(key)));
+            str = str.append("&");
+        }
+        String params =str.substring(0,str.length()-1);
+        params = params+cipherCode;
+        return DigestUtils.md5Hex(params).toUpperCase();
+    }
+
     public static String getRandomString(int length) {
         String base = "abcdefghijklmnopqrstuvwxyz0123456789";
         Random random = new Random();
