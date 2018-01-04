@@ -13,6 +13,7 @@ public class CodeManager {
     public static final String PAY_FAILED = "3";
     public static final String WAITING = "4";
     public static final String PERMISSION_DENY = "5";
+    public static final String WAITING_RESPONSE = "6";
 
     public static final String SUCCESS = "success";
     public static final String FAILED = "failed";
