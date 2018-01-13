@@ -1,6 +1,7 @@
 package hf.base.utils;
 
 import hf.base.exceptions.BizFailException;
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.MapUtils;
 import org.springframework.util.StringUtils;
 
@@ -11,9 +12,7 @@ import java.lang.reflect.Field;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.time.*;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -40,6 +39,8 @@ public class TypeConverter {
 
             Field[] fields = dataType.getDeclaredFields();
 
+            Map<String,List<String>> groupFieldMap = new HashMap<>();
+
             for(Field field:fields) {
                 if(!field.isAnnotationPresent(hf.base.annotations.Field.class)) {
                     continue;
@@ -51,10 +52,19 @@ public class TypeConverter {
                 String value = (StringUtils.isEmpty(fieldStr) || org.apache.commons.lang3.StringUtils.equalsIgnoreCase("null",fieldStr)) ?fieldValue.defaults():fieldStr;
 
                 if(org.apache.commons.lang3.StringUtils.isEmpty(value) || org.apache.commons.lang3.StringUtils.equalsIgnoreCase("null",value)) {
-                    if(fieldValue.required()) {
+                    if(fieldValue.required() && !StringUtils.isEmpty(fieldValue.group())) {
                         throw new BizFailException("field empty");
                     }
                     continue;
+                }
+
+                if(!StringUtils.isEmpty(fieldValue.group())) {
+                    if(CollectionUtils.isEmpty(groupFieldMap.get(fieldValue.group()))) {
+                        groupFieldMap.put(fieldValue.group(),new ArrayList<>());
+                    }
+                    if(!Utils.isEmpty(value)) {
+                        groupFieldMap.get(field.getName()).add(value);
+                    }
                 }
 
                 if(fieldValue.required() && org.apache.commons.lang3.StringUtils.isEmpty(value)) {
@@ -73,6 +83,12 @@ public class TypeConverter {
                     beanCache.get(dataType).get(field.getName()).getWriteMethod().invoke(data,new BigDecimal(value));
                 } else {
                     beanCache.get(dataType).get(field.getName()).getWriteMethod().invoke(data,value);
+                }
+            }
+
+            for(String key:groupFieldMap.keySet()) {
+                if(CollectionUtils.isEmpty(groupFieldMap.get(key))) {
+                    throw new BizFailException(String.format("all field in group empty,%s",key));
                 }
             }
 

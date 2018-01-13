@@ -16,6 +16,7 @@ public @interface Field {
     String defaults() default "";
     String alias() default "";
     Type type() default Field.Type.varchar;
+    String group() default "";
 
     enum Type {
         varchar,number,date;
