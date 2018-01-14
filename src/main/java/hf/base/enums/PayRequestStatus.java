@@ -10,6 +10,8 @@ public enum PayRequestStatus {
     OPR_SUCCESS(10,"已接收回复"),
     //异步通知失败
     USER_NOTIFIED(20,"已通知客户"),
+    REFUNDING(30,"退款中"),
+    REFUNDED(98,"已退款"),
     OPR_FINISHED(99,"交易失败"),
     PAY_SUCCESS(100,"交易完成");
 
@@ -39,6 +41,6 @@ public enum PayRequestStatus {
     }
 
     public static boolean isFinalStatus(int status) {
-        return OPR_FINISHED.getValue() == status || PAY_SUCCESS.getValue() == status || PAY_FAILED.getValue() == status;
+        return OPR_FINISHED.getValue() == status || PAY_SUCCESS.getValue() == status || PAY_FAILED.getValue() == status || REFUNDED.getValue() == status;
     }
 }
