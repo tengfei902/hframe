@@ -2,7 +2,13 @@ package hf.base.client;
 
 import hf.base.model.RemoteParams;
 import hf.base.utils.Utils;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
+
+import java.util.Map;
 
 public class BaseClient {
     private static final String APPLICATION_URL_ENCODED = "application/x-www-form-urlencoded";
@@ -18,6 +24,14 @@ public class BaseClient {
 
     protected String post(RemoteParams params) {
         return restTemplate.postForObject(getUrl(params),null == params.getParams()?params.getParamObj():params.getParams(),String.class);
+    }
+
+    protected String post(RemoteParams params, MediaType mediaType) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(mediaType);
+        HttpEntity<Map<String,Object>> httpEntity = new HttpEntity<>(params.getParams(),headers);
+        ResponseEntity<String> res = restTemplate.postForEntity(getUrl(params),httpEntity,String.class);
+        return res.getBody();
     }
 
     private String getUrl(RemoteParams params) {
