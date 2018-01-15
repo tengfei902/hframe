@@ -6,6 +6,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Map;
@@ -27,9 +28,14 @@ public class BaseClient {
     }
 
     protected String post(RemoteParams params, MediaType mediaType) {
+        LinkedMultiValueMap map=new LinkedMultiValueMap();
+        for(String key:params.getParams().keySet()) {
+            map.add(key,params.getParams().get(key));
+        }
+
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(mediaType);
-        HttpEntity<Map<String,Object>> httpEntity = new HttpEntity<>(params.getParams(),headers);
+        HttpEntity<LinkedMultiValueMap> httpEntity = new HttpEntity<>(map,headers);
         ResponseEntity<String> res = restTemplate.postForEntity(getUrl(params),httpEntity,String.class);
         return res.getBody();
     }
