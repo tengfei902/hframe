@@ -114,6 +114,9 @@ public class Utils {
             if(StringUtils.equalsIgnoreCase("sign",key)) {
                 continue;
             }
+            if(Objects.isNull(map.get(key)) || Utils.isEmpty(String.valueOf(map.get(key)))) {
+                continue;
+            }
             str = str.append(String.format("%s=%s",key,map.get(key)));
             str = str.append("&");
         }
@@ -126,6 +129,9 @@ public class Utils {
         StringBuilder str = new StringBuilder("");
         for(String key:set) {
             if(StringUtils.equalsIgnoreCase("sign",key)) {
+                continue;
+            }
+            if(Objects.isNull(map.get(key)) || Utils.isEmpty(String.valueOf(map.get(key)))) {
                 continue;
             }
             str = str.append(String.format("%s=%s",key,map.get(key)));
