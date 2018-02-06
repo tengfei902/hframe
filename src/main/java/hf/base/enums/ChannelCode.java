@@ -8,7 +8,8 @@ public enum ChannelCode {
     WX_APP("05","微信APP支付","05",""),
     ALI_OPEN("06","支付宝服务窗体","06",""),
     ALI_ZS("07","支付宝主扫","07",""),
-    ALI_FS("08","支付宝反扫","08","");
+    ALI_FS("08","支付宝反扫","08",""),
+    WY("09","网银","09","");
 
     private String code;
     private String desc;
