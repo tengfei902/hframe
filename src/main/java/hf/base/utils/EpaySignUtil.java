@@ -11,6 +11,7 @@ import java.security.spec.InvalidKeySpecException;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
 
+import hf.base.exceptions.BizFailException;
 import sun.misc.BASE64Decoder;
 
 /**
@@ -55,10 +56,10 @@ public class EpaySignUtil{
             byte[] signed = signet.sign(); // 对信息的数字签名
             return new String(
                     org.apache.commons.codec.binary.Base64.encodeBase64(signed));
-        } catch (Exception e)
-        {
+        } catch (Exception e) {
+        	e.printStackTrace();
+        	throw new BizFailException(e.getMessage());
         }
-        return null;
     }
 
     /**
