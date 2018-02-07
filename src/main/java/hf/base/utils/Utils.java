@@ -141,6 +141,22 @@ public class Utils {
         return DigestUtils.md5Hex(str.toString()).toUpperCase();
     }
 
+    public static String getEncryptStr(Map<String,Object> map) {
+        Set<String> set = map.keySet().parallelStream().collect(Collectors.toCollection(TreeSet::new));
+        StringBuilder str = new StringBuilder("");
+        for(String key:set) {
+            if(StringUtils.equalsIgnoreCase("sign",key)) {
+                continue;
+            }
+            if(Objects.isNull(map.get(key)) || Utils.isEmpty(String.valueOf(map.get(key)))) {
+                continue;
+            }
+            str = str.append(String.format("%s=%s",key,map.get(key)));
+            str = str.append("&");
+        }
+        return str.substring(0,str.length()-1);
+    }
+
     public static String encrypt2(Map<String,Object> map,String cipherCode) {
         Set<String> set = map.keySet().parallelStream().collect(Collectors.toCollection(TreeSet::new));
         StringBuilder str = new StringBuilder("");
