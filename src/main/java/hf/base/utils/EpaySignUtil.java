@@ -44,6 +44,7 @@ public class EpaySignUtil{
     {
         try
         {
+			java.security.Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
             PKCS8EncodedKeySpec priPKCS8 = new PKCS8EncodedKeySpec(
                     Base64.getBytesBASE64(prikeyvalue));
             KeyFactory keyf = KeyFactory.getInstance("RSA");
