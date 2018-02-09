@@ -1,9 +1,8 @@
 package hf.base.contants;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import hf.base.utils.MapUtils;
+
+import java.util.*;
 
 public class Constants {
     public static final String USER_LOGIN_INFO = "user_login_info";
@@ -31,33 +30,33 @@ public class Constants {
 
     public static final String SETTLE_FEE_RATE = "settle_fee_rate";
 
-    public static final Map<String,String> bankCodeMap = new HashMap<>();
+    public static final List<Map<String,String>> bankCodeList = new ArrayList<>();
 
     static {
-        bankCodeMap.put("ICBC","中国工商银行");
-        bankCodeMap.put("ABC","中国农业银行");
-        bankCodeMap.put("BOC","中国银行");
-        bankCodeMap.put("CCB","中国建设银行");
-        bankCodeMap.put("BOCOM","交通银行");
-        bankCodeMap.put("CMB","招商银行");
-        bankCodeMap.put("CEB","光大银行");
-        bankCodeMap.put("CMBC","民生银行");
-        bankCodeMap.put("PSBC","中国邮政储蓄银行");
-        bankCodeMap.put("SPDB","浦发银行");
-        bankCodeMap.put("CNCB","中信银行");
-        bankCodeMap.put("PAB","平安银行");
-        bankCodeMap.put("HXB","华夏银行");
-        bankCodeMap.put("CIB","兴业银行");
-        bankCodeMap.put("BOHC","渤海银行");
-        bankCodeMap.put("BCCB","北京银行");
-        bankCodeMap.put("GDB","广发银行");
-        bankCodeMap.put("BOS","上海银行");
-        bankCodeMap.put("ZSBC","浙商银行");
-        bankCodeMap.put("NBBC","宁波银行");
-        bankCodeMap.put("NJBC","南京银行");
-        bankCodeMap.put("BRCB","北京农村商业银行");
-        bankCodeMap.put("ZHTLCB","浙江泰隆商业银行");
-        bankCodeMap.put("BEA","东亚银行");
-        bankCodeMap.put("HZB","杭州银行");
+        bankCodeList.add(MapUtils.buildMap("ICBC","中国工商银行"));
+        bankCodeList.add(MapUtils.buildMap("ABC","中国农业银行"));
+        bankCodeList.add(MapUtils.buildMap("BOC","中国银行"));
+        bankCodeList.add(MapUtils.buildMap("CCB","中国建设银行"));
+        bankCodeList.add(MapUtils.buildMap("BOCOM","交通银行"));
+        bankCodeList.add(MapUtils.buildMap("CMB","招商银行"));
+        bankCodeList.add(MapUtils.buildMap("CEB","光大银行"));
+        bankCodeList.add(MapUtils.buildMap("CMBC","民生银行"));
+        bankCodeList.add(MapUtils.buildMap("PSBC","中国邮政储蓄银行"));
+        bankCodeList.add(MapUtils.buildMap("SPDB","浦发银行"));
+        bankCodeList.add(MapUtils.buildMap("CNCB","中信银行"));
+        bankCodeList.add(MapUtils.buildMap("PAB","平安银行"));
+        bankCodeList.add(MapUtils.buildMap("HXB","华夏银行"));
+        bankCodeList.add(MapUtils.buildMap("CIB","兴业银行"));
+        bankCodeList.add(MapUtils.buildMap("BOHC","渤海银行"));
+        bankCodeList.add(MapUtils.buildMap("BCCB","北京银行"));
+        bankCodeList.add(MapUtils.buildMap("GDB","广发银行"));
+        bankCodeList.add(MapUtils.buildMap("BOS","上海银行"));
+        bankCodeList.add(MapUtils.buildMap("ZSBC","浙商银行"));
+        bankCodeList.add(MapUtils.buildMap("NBBC","宁波银行"));
+        bankCodeList.add(MapUtils.buildMap("NJBC","南京银行"));
+        bankCodeList.add(MapUtils.buildMap("BRCB","北京农村商业银行"));
+        bankCodeList.add(MapUtils.buildMap("ZHTLCB","浙江泰隆商业银行"));
+        bankCodeList.add(MapUtils.buildMap("BEA","东亚银行"));
+        bankCodeList.add(MapUtils.buildMap("HZB","杭州银行"));
     }
 }
