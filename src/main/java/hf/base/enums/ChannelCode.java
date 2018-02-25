@@ -9,7 +9,8 @@ public enum ChannelCode {
     ALI_OPEN("06","支付宝服务窗体","06",""),
     ALI_ZS("07","支付宝主扫","07",""),
     ALI_FS("08","支付宝反扫","08",""),
-    WY("09","网银","09","");
+    WY("09","网银","09",""),
+    QQ_H5("10","QQ H5支付","10","");
 
     private String code;
     private String desc;
